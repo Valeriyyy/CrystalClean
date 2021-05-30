@@ -10,6 +10,16 @@ class JobController {
       res.status(500).json(err);
     }
   }
+
+  async getAllJobs(req, res) {
+    try {
+      const jobs = await jobService.getAllJobs();
+      res.status(200).json(jobs);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json(err);
+    }
+  }
 }
 
 module.exports = new JobController();

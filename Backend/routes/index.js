@@ -1,7 +1,7 @@
 const express = require("express");
 const clientController = require("../controller/client");
 const locationController = require("../controller/location");
-const jobController = require('../controller/job');
+const jobController = require("../controller/job");
 
 const router = express.Router();
 
@@ -20,6 +20,6 @@ router.patch("/location/:id", locationController.updateLocation);
 router.delete("/location/:id", locationController.deleteLocation);
 
 // job routes
-router.post('/job', jobController.createJob);
-
+router.post("/job", jobController.createJob);
+router.get("/jobs", jobController.getAllJobs);
 module.exports = router;
