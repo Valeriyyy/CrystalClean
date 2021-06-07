@@ -20,6 +20,10 @@ class JobService {
   getJobById(jobDto) {
     return jobDAO.getJobById(jobDto);
   }
+
+  updateJob(id, jobDto) {
+    return jobDAO.updateJob(id, jobDto);
+  }
 }
 
 module.exports = new JobService();

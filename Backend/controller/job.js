@@ -31,6 +31,16 @@ class JobController {
       res.status(500).json(err);
     }
   }
+
+  async updateJob(req, res) {
+    try {
+      const job = await jobService.updateJob(req.params.id, req.body);
+      res.status(200).json(job);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json(err);
+    }
+  }
 }
 
 module.exports = new JobController();

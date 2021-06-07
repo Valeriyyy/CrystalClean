@@ -55,6 +55,27 @@ class jobDAO {
     );
     return job.rows[0].json_agg;
   }
+
+  async updateJob(id, payload) {
+    const job = await db("job")
+      .where({ id: id })
+      .update(payload)
+      .returning(
+        "id",
+        "client",
+        "location",
+        "order_number",
+        "status",
+        "estimated_price",
+        "total_price",
+        "tip",
+        "notes",
+        "start_at",
+        "end_at",
+        "paid_at",
+        "payment_method"
+      );
+  }
 }
 
 module.exports = new jobDAO();
