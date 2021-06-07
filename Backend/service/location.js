@@ -2,13 +2,13 @@ const locationDAO = require("../dao/location");
 
 class locationService {
   createLocation(locationDto) {
-    const { address, city, zip, state, suite, gateCode, notes } = locationDto;
+    const { address, city, zip, state, unit, gateCode, notes } = locationDto;
     return locationDAO.createLocation(
       address,
       city,
       zip,
       state,
-      suite,
+      unit,
       gateCode,
       notes
     );

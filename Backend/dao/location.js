@@ -1,18 +1,18 @@
 const db = require("../db/db");
 
 class LocationDAO {
-  async createLocation(address, city, zip, state, suite, gateCode, notes) {
+  async createLocation(address, city, zip, state, unit, gateCode, notes) {
     const [id] = await db("location")
       .insert({
         address,
         city,
         zip,
         state,
-        suite,
+        unit,
         gate_code: gateCode,
         notes,
       })
-      .returning("location_id", "created_at");
+      .returning("id", "created_at");
 
     return id;
   }
@@ -36,13 +36,13 @@ class LocationDAO {
     const location = await db("location")
       .where({ location_id: id })
       .update(payload)
-      .returning(["location_id", "address"]);
+      .returning(["id", "address"]);
 
     return location;
   }
 
   async deleteLocation(id) {
-    const res = await db("location").where({ location_id: id }).del();
+    const res = await db("location").where({ id: id }).del();
 
     return res;
   }

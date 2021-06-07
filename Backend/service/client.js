@@ -2,8 +2,8 @@ const clientDAO = require("../dao/client");
 
 class ClientService {
   createClient(clientDto) {
-    const { name, phone, email, notes } = clientDto;
-    return clientDAO.createClient(name, phone, email, notes);
+    const { name, phone, email, notes, rating } = clientDto;
+    return clientDAO.createClient(name, phone, email, notes, rating);
   }
 
   getAllClients() {
