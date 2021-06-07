@@ -1,6 +1,6 @@
 exports.up = function (knex) {
   return knex.schema
-    //.dropTableIfExists("client")
+    .dropTableIfExists("client")
     .createTable("client", (table) => {
       table.uuid("id").defaultTo(knex.raw("uuid_generate_v4 ()"));
       table.string("name", [50]);
@@ -14,5 +14,5 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropTable("client");
+  return knex.schema.dropTableIfExists("client");
 };

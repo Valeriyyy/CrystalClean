@@ -1,10 +1,12 @@
 exports.up = function (knex) {
-  return knex.schema.dropTableIfExists("item").createTable("item", (table) => {
+  return knex.schema.createTable("item", (table) => {
     table.increments("id");
-    table.string("name", [30]);
-    table.decimal("default_price", [6], [2]);
+    table.string("name", 30);
+    table.decimal("default_price", 6, 2);
     table.timestamps(true, true);
   });
 };
 
-exports.down = function (knex) {};
+exports.down = function (knex) {
+  return knex.schema.dropTableIfExists("item");
+};
