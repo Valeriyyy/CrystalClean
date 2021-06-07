@@ -61,7 +61,7 @@ class ClientController {
           .status(404)
           .json({ message: `No client found with id: ${req.params.id}` });
       } else {
-        res.status(200).json(response);
+        res.status(204).json(response);
       }
     } catch (err) {
       console.err(err);

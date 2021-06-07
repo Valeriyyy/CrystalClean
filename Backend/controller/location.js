@@ -64,7 +64,7 @@ class LocationController {
           .status(404)
           .json({ message: `No location found with id: ${req.params.id}` });
       } else {
-        res.status(200).json(response);
+        res.status(204).json(response);
       }
     } catch (err) {
       console.error(err);
