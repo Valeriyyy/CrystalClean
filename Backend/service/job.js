@@ -24,6 +24,10 @@ class JobService {
   updateJob(id, jobDto) {
     return jobDAO.updateJob(id, jobDto);
   }
+
+  deleteJob(jobDto) {
+    return jobDAO.deleteJob(jobDto);
+  }
 }
 
 module.exports = new JobService();

@@ -1,4 +1,21 @@
 const db = require("../db/db");
+const allColumns = [
+  "id",
+  "client",
+  "location",
+  "order_number",
+  "status",
+  "estimated_price",
+  "total_price",
+  "tip",
+  "notes",
+  "start_at",
+  "end_at",
+  "paid_at",
+  "payment_method",
+  "created_at",
+  "updated_at",
+];
 
 class jobDAO {
   async createJob(clientId, locationId, price, startDate, endDate, notes) {
@@ -11,7 +28,7 @@ class jobDAO {
         end_at: endDate,
         notes,
       })
-      .returning(["id", "created_at"]);
+      .returning(allColumns);
 
     return job;
   }
@@ -37,7 +54,6 @@ class jobDAO {
         ") jobs"
     );
 
-    //const jobs = await db("job").select("*");
     return jobs.rows[0].json_agg;
   }
 
@@ -60,21 +76,15 @@ class jobDAO {
     const job = await db("job")
       .where({ id: id })
       .update(payload)
-      .returning(
-        "id",
-        "client",
-        "location",
-        "order_number",
-        "status",
-        "estimated_price",
-        "total_price",
-        "tip",
-        "notes",
-        "start_at",
-        "end_at",
-        "paid_at",
-        "payment_method"
-      );
+      .returning(allColumns);
+
+    return job;
+  }
+
+  async deleteJob(id) {
+    const res = await db("job").where({ id: id }).del();
+
+    return res;
   }
 }
 
