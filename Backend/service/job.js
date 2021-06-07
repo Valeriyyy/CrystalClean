@@ -16,6 +16,10 @@ class JobService {
   getAllJobs() {
     return jobDAO.getAllJobs();
   }
+
+  getJobById(jobDto) {
+    return jobDAO.getJobById(jobDto);
+  }
 }
 
 module.exports = new JobService();

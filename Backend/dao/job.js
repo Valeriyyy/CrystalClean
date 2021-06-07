@@ -40,6 +40,21 @@ class jobDAO {
     //const jobs = await db("job").select("*");
     return jobs.rows[0].json_agg;
   }
+
+  async getJobById(id) {
+    const job = await db.raw(
+      `select json_agg(row_to_json(jobs))
+        from (
+        select *, (
+        select row_to_json("c") from client c where job.client = c.id
+        ) as client, (
+        select row_to_json("l") from location l where job.location = l.id
+        ) as location
+        from job where job.id = '${id}'
+        ) jobs`
+    );
+    return job.rows[0].json_agg;
+  }
 }
 
 module.exports = new jobDAO();

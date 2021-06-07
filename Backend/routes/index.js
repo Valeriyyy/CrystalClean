@@ -22,4 +22,5 @@ router.delete("/location/:id", locationController.deleteLocation);
 // job routes
 router.post("/job", jobController.createJob);
 router.get("/jobs", jobController.getAllJobs);
+router.get('/job/:id', jobController.getJobById);
 module.exports = router;
